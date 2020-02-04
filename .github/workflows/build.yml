@@ -28,7 +28,7 @@ jobs:
         working-directory: /home/build/openwrt
       - name: Compile
         run: |
-          ls package/opensync
+          ls package
           package/opensync/compile OPENSYNC_SRC=https://github.com/plume-design/opensync-openwrt TARGET=ath79-nand
         working-directory: /home/build/openwrt
       - name: Upload artifacts
