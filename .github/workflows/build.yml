@@ -1,4 +1,5 @@
-namync/compile OPEN: OpenWrt Package Build
+name: OpenWrt Package Build
+
 
 on: [push]
 
