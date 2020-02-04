@@ -1,4 +1,4 @@
-name: OpenWrt Package Build
+namync/compile OPEN: OpenWrt Package Build
 
 on: [push]
 
@@ -16,21 +16,18 @@ jobs:
         run: |
           echo "src-link kconfiglib https://github.com/plume-design/opensync-openwrt/feeds/lang" >> feeds.conf
           echo "src-link opensync https://github.com/plume-design/opensync-openwrt/feeds/network" >> feeds.conf
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-          package/opensync/compile OPENSYNC_SRC=https://github.com/plume-design/opensync-openwrt TARGET=ath79-nand
+          #./scripts/feeds update -a
+          #./scripts/feeds install -a
+          #package/opensync/compile OPENSYNC_SRC=https://github.com/plume-design/opensync-openwrt TARGET=ath79-nand
         working-directory: /home/build/openwrt
       - name: Install packages
         run: |
-          ./scripts/feeds install -p custom ${{ matrix.package }}
-        working-directory: /home/build/openwrt
-      - name: Configure
-        run: |
-          make defconfig
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
         working-directory: /home/build/openwrt
       - name: Compile
         run: |
-          make package/${{ matrix.package }}/compile
+          package/opensync/compile OPENSYNC_SRC=https://github.com/plume-design/opensync-openwrt TARGET=ath79-nand
         working-directory: /home/build/openwrt
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
