@@ -13,13 +13,22 @@ jobs:
         target:
           - ath79-nand
     steps:
+      - name: Download repo
+        run: |
+          git clone https://github.com/plume-design/opensync-openwrt.git
+          working-directory: /home/build/openwrt
+      - name: Download repo
+        run: |
+          git clone https://github.com/plume-design/opensync.git
+          rm -r core
+          mv opensync/ core/
+        working-directory: /home/build/openwrt/opensync-openwrt/opensync/
       - name: Prepare feeds
         run: |
-          echo "src-link kconfiglib https://github.com/plume-design/opensync-openwrt/feeds/lang" >> feeds.conf
-          echo "src-link opensync https://github.com/plume-design/opensync-openwrt/feeds/network" >> feeds.conf
-          #./scripts/feeds update -a
-          #./scripts/feeds install -a
-          #package/opensync/compile OPENSYNC_SRC=https://github.com/plume-design/opensync-openwrt TARGET=ath79-nand
+          echo "src-link kconfiglib /home/build/openwrt/opensync-openwrt/feeds/lang" >> feeds.conf
+          echo "src-link opensync /home/build/openwrt/opensync-openwrt/feeds/network" >> feeds.conf
+          echo "src-git base https://git.openwrt.org/openwrt/openwrt.git" >> feeds.conf
+          echo "src-git packages https://git.openwrt.org/feed/packages.git" >> feeds.conf    
         working-directory: /home/build/openwrt
       - name: Install packages
         run: |
@@ -28,7 +37,7 @@ jobs:
         working-directory: /home/build/openwrt
       - name: Compile
         run: |
-          package/opensync/compile OPENSYNC_SRC=https://github.com/plume-design/opensync-openwrt TARGET=ath79-nand
+          make package/opensync/compile OPENSYNC_SRC=/home/build/openwrt/opensync-openwrt TARGET=ath79-nand
         working-directory: /home/build/openwrt
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
