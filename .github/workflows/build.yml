@@ -19,8 +19,8 @@ jobs:
         working-directory: /home/build/openwrt
       - name: Install packages
         run: |
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+          ../scripts/feeds update -a
+          ../scripts/feeds install -a
         working-directory: /home/build/openwrt/opensync-openwrt/
       - name: Compile
         run: |
