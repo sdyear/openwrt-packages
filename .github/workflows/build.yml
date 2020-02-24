@@ -26,7 +26,7 @@ jobs:
         run: |
           #make package/opensync/compile OPENSYNC_SRC=/home/build/openwrt/opensync-openwrt TARGET=ath79-nand
           make TARGET=ATH79 SDK_URL=https://mirror.fsmg.org.nz/openwrt/releases/19.07.1/targets/ath79/nand/openwrt-sdk-19.07.1-ath79-nand_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-        working-directory: /home/build/openwrt/opensync-openwrt/
+        working-directory: /home/build/openwrt/opensync-openwrt/example/
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
         with:
