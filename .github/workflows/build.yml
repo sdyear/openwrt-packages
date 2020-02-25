@@ -29,7 +29,7 @@ jobs:
           #curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
           #sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
           #sudo apt-get update
-          sudo apt-get install docker.io #-ce docker-ce-cli containerd.io -y
+          sudo apt-get install docker.io -y #-ce docker-ce-cli containerd.io -y
       - name: Compile
         run: |
           #make package/opensync/compile OPENSYNC_SRC=/home/build/openwrt/opensync-openwrt TARGET=ath79-nand
