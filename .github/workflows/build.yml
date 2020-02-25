@@ -30,6 +30,8 @@ jobs:
           #sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
           #sudo apt-get update
           sudo apt-get install docker.io -y #-ce docker-ce-cli containerd.io -y
+          sudo usermod -aG docker $USER
+          newgrp docker
       - name: Compile
         run: |
           #make package/opensync/compile OPENSYNC_SRC=/home/build/openwrt/opensync-openwrt TARGET=ath79-nand
