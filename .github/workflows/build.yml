@@ -30,8 +30,8 @@ jobs:
           #sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
           #sudo apt-get update
           sudo apt-get install docker.io -y #-ce docker-ce-cli containerd.io -y
-          sudo groupadd docker
-          sudo usermod -aG docker $USER
+          #sudo groupadd docker
+          sudo usermod -a -G docker $USER
           #su -s ${USER}
           newgrp docker
       - name: Compile
