@@ -1,6 +1,5 @@
 name: OpenWrt Package Build
 
-
 on: [push]
 
 jobs:
@@ -10,6 +9,8 @@ jobs:
       image: openwrtorg/sdk:${{ matrix.target }}
     strategy:
       matrix:
+        package:
+          - hostapd
         target:
           - ath79-nand
     steps:
